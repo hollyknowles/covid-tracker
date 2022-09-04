@@ -1,5 +1,7 @@
 import requests
 
+from secrets import get_api_key, get_api_host
+
 
 def edit_date_format(date):
     """ Inputs a string of any of these formats: DD/MM/YY, DD/MM/YYYY, DD-MM-YY, DD-MM-YY, DD.MM.YY, DD.MM.YYYY
@@ -68,8 +70,8 @@ async def get_data(country, date):
     querystring = {"countrycode": country, "date": date}
 
     headers = {
-        "X-RapidAPI-Key": "4819b2c789mshbc8dc710537c61ep1313d1jsn2ecb830ed7ba",
-        "X-RapidAPI-Host": "worldometer-covid-19.p.rapidapi.com"
+        "X-RapidAPI-Key": get_api_key(),
+        "X-RapidAPI-Host": get_api_host()
     }
 
     response = requests.request("GET", url, headers=headers, params=querystring).json()
